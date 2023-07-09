@@ -25,13 +25,16 @@
       } {
         buildInputs = [
           pkgs.cargo
+          pkgs.cargo-watch
           pkgs.rustc
+          pkgs.rustfmt
           pkgs.sqlite
         ];
 
         shellHook = ''
           WORKDIR=$PWD
           alias build='cargo build'
+          alias dev='watchexec -c -r -w src -- cargo run'
         '';  # join strings with +
       };
     }
